@@ -3,13 +3,14 @@ from flask_restful import Api, Resource
 
 app = Flask(__name__)
 api = Api(app)
+
 light = False
 
 class Light(Resource):
-    
     def get(self):
         return {'light':light}
     def post(self):
+        global light
         light = not light
         return self.get()
 
