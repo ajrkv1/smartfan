@@ -1,5 +1,6 @@
-from flask import Flask
-from flask_restful import Api, Resource
+from genericpath import exists
+from flask import Flask, request
+from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
 api = Api(app)
@@ -20,13 +21,25 @@ class Fan(Resource):
     def get(self):
         return {'fan': fan}
     
-    def post(self,fan_power):
+    def post(self):
         global fan
-        fan = fan_power
+        parser = reqparse.RequestParser()
+        parser.add_argument('power',type=int,help='Fan power level')
+
+        args = parser.parse_args()
+
+        if not 'power' in args:
+            return args
+        power = args['power']
+
+        if not (0 <= power <= 3):
+            return {'status':400, 'message':'power value not in 0-3 range'}
+            
+        fan = power
         return {'fan': fan}
 
 api.add_resource(Light,'/light')
-api.add_resource(Fan,'/fan','/fan/<int:fan_power>')
+api.add_resource(Fan,'/fan')
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0')
