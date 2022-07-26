@@ -1,13 +1,12 @@
-from genericpath import exists
-from flask import Flask, request
+from flask import Flask
 from flask_restful import Api, Resource, reqparse
-
 app = Flask(__name__)
 api = Api(app)
 
 light = False
 fan = 0
 
+        
 class Light(Resource):
     def get(self):
         return {'light':light}
@@ -40,6 +39,7 @@ class Fan(Resource):
 
 api.add_resource(Light,'/light')
 api.add_resource(Fan,'/fan')
+api.add_resource(Secret,'/secret')
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0')
