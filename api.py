@@ -39,7 +39,6 @@ class Fan(Resource):
 
 api.add_resource(Light,'/light')
 api.add_resource(Fan,'/fan')
-api.add_resource(Secret,'/secret')
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0')
