@@ -13,3 +13,5 @@ This is only a flask app. to run it outside of the flask development server you 
 ## Security
 
 **DONT USE THIS APPLICATION WITHOUT A SECURE CONNECTION**. Otherwise just about anyone would be able to use this just from inside your network (or from the internet if your app is portforwarded). Use a secure TLS connection.
+
+If you find a vulnerability within the app, please tell me! 
