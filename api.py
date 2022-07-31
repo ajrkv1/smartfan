@@ -43,8 +43,5 @@ class Fan(Resource):
 api.add_resource(Light,'/light')
 api.add_resource(Fan,'/fan')
 
-ssl_ctxt = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-
-
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0',ssl_context='adhoc')
+    app.run()
