@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
 import transmitter
+import ssl
 app = Flask(__name__)
 api = Api(app)
 
@@ -42,5 +43,8 @@ class Fan(Resource):
 api.add_resource(Light,'/light')
 api.add_resource(Fan,'/fan')
 
+ssl_ctxt = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+
+
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True,host='0.0.0.0',ssl_context='adhoc')
